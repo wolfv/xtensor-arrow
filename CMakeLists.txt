@@ -1,6 +1,7 @@
 project(ArrowCheck)
 cmake_minimum_required(VERSION 3.11)
 
+find_package(Threads)
 find_package(xtensor)
 find_package(arrow)
 
@@ -11,4 +12,4 @@ include_directories(${arrow_INCLUDE_DIRS})
 
 add_executable(xarrow main.cpp)
 
-target_link_libraries(xarrow /usr/local/lib64/libarrow.so.11)
+target_link_libraries(xarrow arrow_shared)
