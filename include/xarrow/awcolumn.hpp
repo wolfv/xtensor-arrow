@@ -42,7 +42,7 @@ namespace xt
     {
         using value_expression = xt::xtensor_adaptor<xt::xbuffer_adaptor<T*, xt::no_ownership>, 1>;
         using value_storage_type = typename value_expression::storage_type&;
-        using flag_expression = xt::xtensor_adaptor<xtl::xdynamic_bitset_view<uint8_t*>, 1>;
+        using flag_expression = xt::xtensor_adaptor<xtl::xdynamic_bitset_view<uint8_t>, 1>;
         using flag_storage_type = typename flag_expression::storage_type&;
         using storage_type = xoptional_assembly_storage<value_storage_type, flag_storage_type>;
         using temporary_type = awoptional_assembly<T>;
@@ -100,7 +100,7 @@ namespace xt
         using assembly_type = base_type;
 
         using valuebuffer_type = xt::xbuffer_adaptor<T*, xt::no_ownership>;
-        using flagbuffer_type = xtl::xdynamic_bitset_view<uint8_t*>;
+        using flagbuffer_type = xtl::xdynamic_bitset_view<uint8_t>;
 
         using arrow_conversion = arrow_conversion<T>;
         using arrow_inner_type = typename arrow_conversion::type;
