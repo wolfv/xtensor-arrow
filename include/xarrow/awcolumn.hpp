@@ -104,8 +104,8 @@ namespace xt
         using valuebuffer_type = xt::xbuffer_adaptor<T*, xt::no_ownership>;
         using flagbuffer_type = xtl::xdynamic_bitset_view<uint8_t>;
 
-        using arrow_conversion = arrow_conversion<T>;
-        using arrow_inner_type = typename arrow_conversion::type;
+        using internal_arrow_conversion = arrow_conversion<T>;
+        using arrow_inner_type = typename internal_arrow_conversion::type;
         using arrow_array = arrow::NumericArray<arrow_inner_type>;
 
         awoptional_assembly(std::initializer_list<value_type> init)
