@@ -40,10 +40,10 @@ namespace xt
     template <class T>
     struct xcontainer_inner_types<awoptional_assembly<T>>
     {
-        using value_expression = xt::xtensor_adaptor<xt::xbuffer_adaptor<T*, xt::no_ownership>, 1>;
-        using value_storage_type = typename value_expression::storage_type&;
-        using flag_expression = xt::xtensor_adaptor<xtl::xdynamic_bitset_view<uint8_t>, 1>;
-        using flag_storage_type = typename flag_expression::storage_type&;
+        using raw_value_expression = xt::xtensor_adaptor<xt::xbuffer_adaptor<T*, xt::no_ownership>, 1>;
+        using value_storage_type = typename raw_value_expression::storage_type&;
+        using raw_flag_expression = xt::xtensor_adaptor<xtl::xdynamic_bitset_view<uint8_t>, 1>;
+        using flag_storage_type = typename raw_flag_expression::storage_type&;
         using storage_type = xoptional_assembly_storage<value_storage_type, flag_storage_type>;
         using temporary_type = awoptional_assembly<T>;
     };
@@ -87,6 +87,8 @@ namespace xt
         using self_type = awoptional_assembly<T>;
         using base_type = xoptional_assembly_base<self_type>;
         using semantic_base = xcontainer_semantic<self_type>;
+        using raw_value_expression = typename base_type::raw_value_expression;
+        using raw_flag_expression = typename base_type::raw_flag_expression;
         using value_expression = typename base_type::value_expression;
         using flag_expression = typename base_type::flag_expression;
         using storage_type = typename base_type::storage_type;
@@ -177,8 +179,8 @@ namespace xt
         }
 
         std::shared_ptr<arrow_array> m_data;
-        value_expression m_value;
-        flag_expression m_flag;
+        raw_value_expression m_value;
+        raw_flag_expression m_flag;
         storage_type m_storage;
     };
 }
